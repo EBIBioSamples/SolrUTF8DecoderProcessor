@@ -14,16 +14,16 @@ In the `target` folder you will be able to find the `.jar` package that you can 
 
 ## How to use the processor
 
-1. First of all you need SolR to be aware of the plugin. An easy way to achive this is to create a `lib` folder inside the core that will use such plugin. SolR
+- First of all you need SolR to be aware of the plugin. An easy way to achive this is to create a `lib` folder inside the core that will use such plugin. SolR
 automatically scan that folder and you dont' need to do much more. Another solution could be to put the processor in a another folder and update the `solrconfig.xml` file 
-with a new instruction similar to this
+with a new instruction similar to this  
 ```xml
 <lib dir="path/to/processor/folder" regex=".*\.jar" />
 <!-- or even defining a specific path
 	<lib path="path/to/processor/the-jar-package-with-processor.jar" />
 -->
 ```
-2. You need to update your `solrconfig.xml` file with the instructions for the processor. Here an example
+- You need to update your `solrconfig.xml` file with the instructions for the processor. Here an example
 ```xml
 <!-- You need to define an updateRequestProcessorChain in order to make this work -->
  <updateRequestProcessorChain name="UTF8">
@@ -49,4 +49,5 @@ Remember that you can decide which fields the processor will work on using the `
   </requestHandler>
 ```
 
-Now when you index a document with a field `test_utf8`, such field will be processed by the UTF8DecoderProcessor
+## Start indexing
+Everything is in place, when you index a document with a field `test_utf8` such field will be processed by the UTF8DecoderProcessor and the result stored in the field.
