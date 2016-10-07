@@ -14,16 +14,14 @@ In the `target` folder you will be able to find the `.jar` package that you can 
 
 ## How to use the processor
 
-- First of all you need SolR to be aware of the plugin. An easy way to achive this is to create a `lib` folder inside the core that will use such plugin. SolR
-automatically scan that folder and you dont' need to do much more. Another solution could be to put the processor in a another folder and update the `solrconfig.xml` file 
-with a new instruction similar to this  
+**1:** First of all you need SolR to be aware of the plugin. An easy way to achive this is to create a `lib` folder inside the core that will use such plugin. SolR automatically scan that folder and you dont' need to do much more. Another solution could be to put the processor in a another folder and update the `solrconfig.xml` file with a new instruction similar to this  
 ```xml
-<lib dir="path/to/processor/folder" regex=".*\.jar" />
-<!-- or even defining a specific path
-	<lib path="path/to/processor/the-jar-package-with-processor.jar" />
--->
-```
-- You need to update your `solrconfig.xml` file with the instructions for the processor. Here an example
+	 <lib dir="path/to/processor/folder" regex=".*\.jar" />
+	 <!-- or even defining a specific path
+ 		<lib path="path/to/processor/the-jar-package-with-processor.jar" />
+ 	-->
+ ```
+**2:** You need to update your `solrconfig.xml` file with the instructions for the processor. Here an example
 ```xml
 <!-- You need to define an updateRequestProcessorChain in order to make this work -->
  <updateRequestProcessorChain name="UTF8">
@@ -40,7 +38,7 @@ Remember that you can decide which fields the processor will work on using the `
 - typeName - selecting specific fields by fieldType name lookup
 - typeClass - selecting specific fields by fieldType class lookup, including inheritence and interfaces
 
-3. You need than to attach the processor chain to the `/update` request handler, i.e:
+**3:** You need than to attach the processor chain to the `/update` request handler, i.e:
 ```xml
 <requestHandler name="/update" class="solr.UpdateRequestHandler">
     <lst name="defaults">
